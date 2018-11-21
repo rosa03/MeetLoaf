@@ -13,4 +13,6 @@
     <string name="attendees">Attendees</string>
     <string name="location">Location</string>
     <string name="notes">Notes</string>
+    <string name="my_meetings">My Meetings</string>
+    <string name="meeting_history">Meeting History</string>
 </resources>

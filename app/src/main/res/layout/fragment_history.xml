@@ -7,5 +7,13 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="@string/meeting_history"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="35sp" />
 
 </FrameLayout>

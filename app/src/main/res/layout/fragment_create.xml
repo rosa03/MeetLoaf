@@ -9,15 +9,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:text="@string/create_meeting"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="35sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
@@ -34,17 +34,18 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/attendees"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:hint="@string/attendees"
-            android:inputType="text" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/attendees"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:hint="@string/attendees"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -57,6 +58,7 @@
                 android:hint="@string/notes"
                 android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -69,20 +71,42 @@
                 android:hint="@string/location"
                 android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/selectTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Time"
-            android:onClick="launchClock"/>
+            <Button
+                android:id="@+id/selectTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Time" />
 
         </android.support.design.widget.TextInputLayout>
-    </LinearLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/selectDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Date" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorGrey"
+                android:text="Submit" />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
 
 
 </FrameLayout>
