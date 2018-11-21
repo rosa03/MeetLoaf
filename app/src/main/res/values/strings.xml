@@ -8,4 +8,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_meeting">Create Meeting</string>
+    <string name="title">Title</string>
+    <string name="attendees">Attendees</string>
+    <string name="location">Location</string>
+    <string name="notes">Notes</string>
 </resources>
