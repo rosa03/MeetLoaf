@@ -1,12 +1,12 @@
 package com.example.rosa.meetloaf;
 
 
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.Fragment;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     private HistoryFragment historyFragment;
     private CreateFragment createFragment;
     private SettingsFragment settingsFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,4 +74,5 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
 
     }
+
 }

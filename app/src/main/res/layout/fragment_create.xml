@@ -104,7 +104,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorGrey"
-                android:text="Submit" />
+                android:text="Submit"
+                android:onClick="writeFile"/>
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
