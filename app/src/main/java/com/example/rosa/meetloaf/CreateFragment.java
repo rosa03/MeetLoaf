@@ -41,6 +41,10 @@ public class CreateFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 createMeeting(view);
+                editTitle.setText(" ");
+                editAttendees.setText(" ");
+                editNotes.setText(" ");
+                editLocation.setText(" ");
 
             }
         });
@@ -58,6 +62,9 @@ public class CreateFragment extends Fragment {
 
         FileManager fm = new FileManager(getContext());
         fm.saveMeetingToFile(title, attendees, notes, location);
+        Toast.makeText(getActivity(),"Saved to " + getActivity().getFilesDir() +
+                "/" + "meetings.txt", Toast.LENGTH_LONG).show();
+
 
 
 //        try {
