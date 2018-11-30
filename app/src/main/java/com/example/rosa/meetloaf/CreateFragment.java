@@ -1,19 +1,13 @@
 package com.example.rosa.meetloaf;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class CreateFragment extends Fragment {
 
@@ -41,14 +35,17 @@ public class CreateFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 createMeeting(view);
-                editTitle.setText(" ");
-                editAttendees.setText(" ");
-                editNotes.setText(" ");
-                editLocation.setText(" ");
-
+                clearForm();
             }
         });
         return view;
+    }
+
+    public void clearForm(){
+        editTitle.setText(" ");
+        editAttendees.setText(" ");
+        editNotes.setText(" ");
+        editLocation.setText(" ");
     }
 
     public void createMeeting(View v){
@@ -64,21 +61,6 @@ public class CreateFragment extends Fragment {
         fm.saveMeetingToFile(title, attendees, notes, location);
         Toast.makeText(getActivity(),"Saved to " + getActivity().getFilesDir() +
                 "/" + "meetings.txt", Toast.LENGTH_LONG).show();
-
-
-
-//        try {
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-//        String text = CreateFragment.editTitle.getText().toString() + "\n" + CreateFragment.editAttendees.getText().toString() +
-//                "\n" + CreateFragment.editNotes.getText().toString() + "\n" + CreateFragment.editLocation.getText().toString();
-//
-//
-//        System.out.print(text);
-//        System.exit(0);
 
     }
 

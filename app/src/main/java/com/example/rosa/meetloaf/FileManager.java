@@ -2,6 +2,8 @@ package com.example.rosa.meetloaf;
 
 import android.content.Context;
 import android.util.Log;
+
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
@@ -32,7 +34,8 @@ public class FileManager {
         // todo: figure out how you're going to store multiple meetings in the same file
         // todo: first step needs to figure out how to read in the file or 'add' to the end of a file
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("meetings.txt", Context.MODE_PRIVATE));
+            FileOutputStream fos = context.openFileOutput(FILE_NAME, Context.MODE_APPEND);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos);
             outputStreamWriter.write(title);
             outputStreamWriter.write(attendees);
             outputStreamWriter.write(notes);
@@ -43,6 +46,5 @@ public class FileManager {
             Log.e("Exception", "File write failed: " + e.toString());
         }
 
-        System.out.print("hello");
     }
 }
