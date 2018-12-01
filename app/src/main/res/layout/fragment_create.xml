@@ -5,19 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".CreateFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:text="@string/create_meeting"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="35sp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
@@ -99,14 +90,28 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorGrey"
+                android:text="Clear"
+                android:onClick="clearForm"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
                 android:id="@+id/submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorGrey"
                 android:text="Submit"
-                android:onClick="writeFile"/>
+                android:onClick="createMeeting"/>
         </android.support.design.widget.TextInputLayout>
+
     </LinearLayout>
 
 </FrameLayout>

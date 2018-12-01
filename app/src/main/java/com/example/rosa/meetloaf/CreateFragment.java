@@ -23,25 +23,33 @@ public class CreateFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        System.out.println("test");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create, container, false);
+        // Set title bar
+        ((MainActivity) getActivity()).setActionBarTitle("Create Meeting");
         editTitle = view.findViewById(R.id.title);
         editAttendees = view.findViewById(R.id.attendees);
         editNotes = view.findViewById(R.id.notes);
         editLocation = view.findViewById(R.id.location);
         final Button submit = view.findViewById(R.id.submit);
+        final Button clear = view.findViewById(R.id.clear);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createMeeting(view);
-                clearForm();
+                clearForm(view);
+            }
+        });
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearForm(view);
             }
         });
         return view;
     }
 
-    public void clearForm(){
+    public void clearForm(View v){
         editTitle.setText(" ");
         editAttendees.setText(" ");
         editNotes.setText(" ");
@@ -54,9 +62,6 @@ public class CreateFragment extends Fragment {
         String notes = this.editNotes.getText().toString();
         String attendees = this.editAttendees.getText().toString();
         String location = this.editLocation.getText().toString();
-
-        System.out.println(title);
-
         FileManager fm = new FileManager(getContext());
         fm.saveMeetingToFile(title, attendees, notes, location);
         Toast.makeText(getActivity(),"Saved to " + getActivity().getFilesDir() +

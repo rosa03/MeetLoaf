@@ -75,4 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
+
 }
