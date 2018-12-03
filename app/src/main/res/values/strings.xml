@@ -16,4 +16,7 @@
     <string name="my_meetings">My Meetings</string>
     <string name="meeting_history">Meeting History</string>
     <string name="title_activity_maps">Map</string>
+    <string name="clear">Clear</string>
+    <string name="submit">Submit</string>
+    <string name="date">date</string>
 </resources>

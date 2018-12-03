@@ -79,15 +79,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
+        <Button
                 android:id="@+id/selectDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Select Date" />
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="@string/date"/>
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorGrey"
+                android:text="@string/submit"
+                android:onClick="createMeeting"/>
 
             <Button
                 android:id="@+id/clear"
@@ -95,21 +111,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorGrey"
-                android:text="Clear"
+                android:text="@string/clear"
                 android:onClick="clearForm"/>
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/submit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/colorGrey"
-                android:text="Submit"
-                android:onClick="createMeeting"/>
         </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>

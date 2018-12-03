@@ -2,6 +2,7 @@ package com.example.rosa.meetloaf;
 
 
 import android.os.Bundle;
+import android.preference.PreferenceFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +25,9 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         ((MainActivity) getActivity()).setActionBarTitle("Settings");
         // Inflate the layout for this fragment
+        //addPreferencesFromResource(R.xml.app_preferences);
         return inflater.inflate(R.layout.fragment_settings, container, false);
     }
+
 
 }
