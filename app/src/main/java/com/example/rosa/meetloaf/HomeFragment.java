@@ -2,6 +2,7 @@ package com.example.rosa.meetloaf;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,7 +23,7 @@ import java.util.logging.FileHandler;
  */
 public class HomeFragment extends Fragment {
 
-    private FileManager fm = new FileManager(getActivity());
+    //private FileManager fm = new FileManager(getActivity());
     private RecyclerView myMeetings;
     private RecyclerView.Adapter rvAdapter;
 
@@ -31,23 +32,29 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,  ViewGroup container,
+                              Bundle savedInstanceState) {
         ((MainActivity) getActivity()).setActionBarTitle("Home");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         myMeetings = view.findViewById(R.id.myMeetings);
         // Initialize meetings
         List<Meeting> meetings= new ArrayList<>();
-        /*
-        try {
-            meetings.addAll(fm.readFile(getActivity()));
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (Meeting m : meetings)
+        {
+            //FileManager.saveMeetingToFile(m, getContext());
         }
-        */
+        //try {
+            meetings = FileManager.readFile(getContext());
+        //} catch (IOException e) {
+         //   e.printStackTrace();
+        //}
+        FileManager fm = new FileManager(getContext());
         meetings.add(new Meeting("name", "house"));
         meetings.add(new Meeting("beep", "house"));
+
+//        meetings.addAll(fm.readFile(getContext()));
+
         rvAdapter = new MeetingsAdapter(meetings, this.getContext());
         myMeetings.setAdapter(rvAdapter);
         myMeetings.setLayoutManager(new LinearLayoutManager(view.getContext()));

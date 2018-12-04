@@ -20,10 +20,10 @@ public class FileManager {
 
     private Context context;
     private ArrayList<Meeting> meetings = new ArrayList<>();
-    private String[] meeting;
+    private String[] attributes;
     private String[] attendeeList;
 
-    private final String FILE_NAME = "meetings.txt";
+    private static final String FILE_NAME = "meetings.txt";
 
     /**
      * Construct a file manager object.
@@ -37,15 +37,15 @@ public class FileManager {
      * This method saves a meeting in the meetings.txt file.
      * @param meeting
      */
-    public void saveMeetingToFile(Meeting meeting) {
+    public static void saveMeetingToFile(Meeting meeting, Context context) {
 
         // todo: figure out how you're going to store multiple meetings in the same file
         // todo: first step needs to figure out how to read in the file or 'add' to the end of a file
         try {
             FileOutputStream fos = context.openFileOutput(FILE_NAME, Context.MODE_APPEND);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos);
-            outputStreamWriter.write("\n" + meeting.getID() + "\n" + meeting.getTitle() + "\n" +
-                    meeting.getAttendees() + "\n" + meeting.getNotes()  + "\n" + meeting.getLocation() );
+            outputStreamWriter.write(meeting.getTitle() + ";" +
+                    meeting.getAttendees() + ";" + meeting.getNotes()  + ";" + meeting.getLocation());
             outputStreamWriter.close();
         }
         catch (IOException e) {
@@ -54,28 +54,23 @@ public class FileManager {
 
     }
 
-    public List<Meeting> readFile(Context context) throws IOException{
-        InputStream inputStream = context.openFileInput("meetings.txt");
+    public static List<Meeting> readFile(Context context) {
         List<Meeting> meetings = new ArrayList<>();
         try{
-        if ( inputStream != null ) {
+            InputStream inputStream = context.openFileInput("meetings.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             Meeting meeting = null;
             String getString = "";
-            StringBuilder stringBuilder = new StringBuilder();
-
             while ( (getString = bufferedReader.readLine()) != null ) {
-                String[] attributes = getString.split(",");
+                String[] attributes = getString.split(";");
                 if (attributes.length > 6) {
-                    meeting = new Meeting(attributes[0], attributes[2]);
+                    meeting = new Meeting(attributes[0], attributes[3]);
                     meeting.setAttendees(attributes[1]);
                     meetings.add(meeting);
                 }
-                stringBuilder.append(getString);
             }
             inputStream.close();
-        }
     } catch (IOException e) {
         Log.e("login activity", "Can not read file: " + e.toString());
     }
