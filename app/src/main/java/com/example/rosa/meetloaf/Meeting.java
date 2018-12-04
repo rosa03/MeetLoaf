@@ -1,5 +1,7 @@
 package com.example.rosa.meetloaf;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Meeting {
@@ -11,7 +13,7 @@ public class Meeting {
     private String title, notes, location, date, time;
 
     //put attendees back into array
-    public Meeting(String title, String attendees, String notes, String location){
+    public Meeting(String title, String location){
         this.ID = COUNT.incrementAndGet();
         this.title = title;
         this.attendees = attendees;

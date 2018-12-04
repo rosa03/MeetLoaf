@@ -82,7 +82,7 @@ public class CreateFragment extends Fragment {
         String notes = this.editNotes.getText().toString();
         String attendees = this.editAttendees.getText().toString();
         String location = this.editLocation.getText().toString();
-        Meeting meeting = new Meeting(title, attendees, notes, location);
+        Meeting meeting = new Meeting(title, location);
         FileManager fm = new FileManager(getContext());
         fm.saveMeetingToFile(meeting);
         Toast.makeText(getActivity(),"Saved to " + getActivity().getFilesDir() +

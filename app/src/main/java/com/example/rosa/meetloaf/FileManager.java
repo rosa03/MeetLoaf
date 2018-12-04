@@ -6,11 +6,15 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class FileManager {
 
@@ -50,17 +54,32 @@ public class FileManager {
 
     }
 
-    public void readFile(File file) throws IOException{
-        FileInputStream is;
-        BufferedReader reader;
-        if(file.exists()){
-            is = new FileInputStream(file);
-            reader = new BufferedReader(new InputStreamReader(is));
-            String line = reader.readLine();
-            while(line != null){
-                System.out.println(line);
-                line = reader.readLine();
+    public List<Meeting> readFile(Context context) throws IOException{
+        InputStream inputStream = context.openFileInput("meetings.txt");
+        List<Meeting> meetings = new ArrayList<>();
+        try{
+        if ( inputStream != null ) {
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            Meeting meeting = null;
+            String getString = "";
+            StringBuilder stringBuilder = new StringBuilder();
+
+            while ( (getString = bufferedReader.readLine()) != null ) {
+                String[] attributes = getString.split(",");
+                if (attributes.length > 6) {
+                    meeting = new Meeting(attributes[0], attributes[2]);
+                    meeting.setAttendees(attributes[1]);
+                    meetings.add(meeting);
+                }
+                stringBuilder.append(getString);
             }
+            inputStream.close();
         }
+    } catch (IOException e) {
+        Log.e("login activity", "Can not read file: " + e.toString());
+    }
+
+    return meetings;
     }
 }
