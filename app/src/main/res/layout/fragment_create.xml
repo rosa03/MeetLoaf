@@ -33,7 +33,7 @@
                 android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:hint="@string/date"
                 android:inputType="date" />
 
@@ -47,7 +47,7 @@
                 android:id="@+id/time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:hint="@string/time"
                 android:inputType="time" />
 
@@ -61,9 +61,22 @@
                 android:id="@+id/attendees"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:hint="@string/attendees"
                 android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/location"
+                android:background="@color/colorWhite"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -74,7 +87,7 @@
                 android:id="@+id/notes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:hint="@string/notes"
                 android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
@@ -83,34 +96,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/location"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:hint="@string/location"
-                android:inputType="text" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/clear"
+                android:textColor="@color/colorWhite" />
 
             <Button
                 android:id="@+id/submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:background="@color/colorGrey"
-                android:text="@string/submit" />
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/submit"
+                android:textColor="@color/colorWhite" />
 
-            <Button
-                android:id="@+id/clear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/colorGrey"
-                android:text="@string/clear" />
         </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>

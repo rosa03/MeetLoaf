@@ -87,6 +87,12 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
                                 dialog.dismiss();
                             }
                         });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "View Location",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
                 alertDialog.show();
             }
         });

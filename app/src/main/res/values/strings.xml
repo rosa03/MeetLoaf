@@ -11,16 +11,16 @@
     <string name="create_meeting">Create Meeting</string>
     <string name="title">Title</string>
     <string name="attendees">Attendees</string>
-    <string name="location">Location</string>
     <string name="notes">Notes</string>
     <string name="my_meetings">My Meetings</string>
     <string name="meeting_history">Meeting History</string>
     <string name="title_activity_maps">Map</string>
-    <string name="clear">Clear</string>
-    <string name="submit">Submit</string>
+    <string name="clear">CLEAR</string>
+    <string name="submit">SUBMIT</string>
     <string name="date">Date</string>
     <string name="select_date">Select Date</string>
     <string name="confirm">Confirm</string>
     <string name="select_time">Select Time</string>
     <string name="time">Time</string>
+    <string name="location">Location</string>
 </resources>

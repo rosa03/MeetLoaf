@@ -1,5 +1,6 @@
 package com.example.rosa.meetloaf;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,7 +23,6 @@ public class CreateFragment extends Fragment {
     protected EditText editTitle;
     protected EditText editAttendees;
     protected EditText editNotes;
-    protected EditText editLocation;
     protected EditText editTime;
     protected EditText editDate;
 
@@ -44,11 +44,18 @@ public class CreateFragment extends Fragment {
         editTitle = view.findViewById(R.id.title);
         editAttendees = view.findViewById(R.id.attendees);
         editNotes = view.findViewById(R.id.notes);
-        editLocation = view.findViewById(R.id.location);
         editDate = view.findViewById(R.id.date);
         editTime = view.findViewById(R.id.time);
         final Button submit = view.findViewById(R.id.submit);
         final Button clear = view.findViewById(R.id.clear);
+        final Button location = view.findViewById(R.id.location);
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), MapsActivity.class);
+                startActivity(i);
+            }
+        });
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,7 +76,6 @@ public class CreateFragment extends Fragment {
         editTitle.setText(" ");
         editAttendees.setText(" ");
         editNotes.setText(" ");
-        editLocation.setText(" ");
         editTime.setText(" ");
         editDate.setText(" ");
     }
@@ -81,7 +87,6 @@ public class CreateFragment extends Fragment {
         String title = this.editTitle.getText().toString();
         String notes = this.editNotes.getText().toString();
         String attendees = this.editAttendees.getText().toString();
-        String location = this.editLocation.getText().toString();
         String time = this.editTime.getText().toString();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
         Date convertedDate = new Date();
@@ -104,7 +109,6 @@ public class CreateFragment extends Fragment {
             Meeting meeting = new Meeting(title, date, time);
             meeting.setAttendees(attendees);
             meeting.setNotes(notes);
-            meeting.setLocation(location);
             FileManager.saveMeetingToFile(meeting, getContext());
             Toast.makeText(getActivity(), "Saved to " + getActivity().getFilesDir() +
                     "/" + "meetings.txt", Toast.LENGTH_LONG).show();
