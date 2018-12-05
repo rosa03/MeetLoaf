@@ -79,17 +79,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <Button
+            <Button
                 android:id="@+id/selectDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select Date" />
+                android:text="@string/select_date" />
+
             <TextView
                 android:id="@+id/dateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="@string/date"/>
+                android:layout_gravity="end"
+                android:text="@string/date" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -102,8 +103,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorGrey"
-                android:text="@string/submit"
-                android:onClick="createMeeting"/>
+                android:onClick="createMeeting"
+                android:text="@string/submit" />
 
             <Button
                 android:id="@+id/clear"
@@ -111,8 +112,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorGrey"
-                android:text="@string/clear"
-                android:onClick="clearForm"/>
+                android:onClick="clearForm"
+                android:text="@string/clear" />
         </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>

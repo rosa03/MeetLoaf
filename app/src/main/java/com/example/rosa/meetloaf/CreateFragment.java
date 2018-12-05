@@ -1,6 +1,7 @@
 package com.example.rosa.meetloaf;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,6 +21,8 @@ public class CreateFragment extends Fragment {
     protected EditText editAttendees;
     protected EditText editNotes;
     protected EditText editLocation;
+    private TextView theDate;
+
     private GoogleMap map;
 
     public CreateFragment() {
@@ -40,6 +43,18 @@ public class CreateFragment extends Fragment {
         final Button submit = view.findViewById(R.id.submit);
         final Button clear = view.findViewById(R.id.clear);
         final Button selectDate = view.findViewById(R.id.selectDate);
+        theDate = view.findViewById(R.id.dateTextView);
+//        Intent incoming = getActivity().getIntent();
+//        String date = incoming.getStringExtra("date");
+//        theDate.setText(date);
+        selectDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), CalendarActivity.class);
+//                startActivity(intent);
+                launchCalendar(view);
+            }
+        });
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,30 +68,28 @@ public class CreateFragment extends Fragment {
                 clearForm(view);
             }
         });
-        selectDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //selectDate(view);
+//        selectDate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //selectDate(view);
 //                DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 //                    @Override
 //                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 //
 //                    }
 //                });
-                //datePickerDialog.show();
-            }
-        });
+        //datePickerDialog.show();
         return view;
     }
 
-    public void clearForm(View v){
+    public void clearForm(View v) {
         editTitle.setText(" ");
         editAttendees.setText(" ");
         editNotes.setText(" ");
         editLocation.setText(" ");
     }
 
-    public void createMeeting(View v){
+    public void createMeeting(View v) {
         // all of the data from the form
         String title = this.editTitle.getText().toString();
         String notes = this.editNotes.getText().toString();
@@ -86,14 +99,14 @@ public class CreateFragment extends Fragment {
         meeting.setAttendees(attendees);
         meeting.setNotes(notes);
         FileManager.saveMeetingToFile(meeting, getContext());
-        Toast.makeText(getActivity(),"Saved to " + getActivity().getFilesDir() +
+        Toast.makeText(getActivity(), "Saved to " + getActivity().getFilesDir() +
                 "/" + "meetings.txt", Toast.LENGTH_LONG).show();
 
     }
 
-    public void selectDate(View v){
-
-
+    public void launchCalendar(View view) {
+//        Intent i = new Intent(getContext(), CreateFragment.class);
+        startActivity(new Intent(getContext(), CalendarActivity.class));
     }
 
 

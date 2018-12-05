@@ -27,6 +27,7 @@ public class FileManager {
 
     /**
      * Construct a file manager object.
+     *
      * @param context
      */
     public FileManager(Context context) {
@@ -35,6 +36,7 @@ public class FileManager {
 
     /**
      * This method saves a meeting in the meetings.txt file.
+     *
      * @param meeting
      */
     public static void saveMeetingToFile(Meeting meeting, Context context) {
@@ -45,10 +47,9 @@ public class FileManager {
             FileOutputStream fos = context.openFileOutput(FILE_NAME, Context.MODE_APPEND);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos);
             outputStreamWriter.write(meeting.getTitle() + ";" +
-                    meeting.getAttendees() + ";" + meeting.getNotes()  + ";" + meeting.getLocation());
+                    meeting.getAttendees() + ";" + meeting.getNotes() + ";" + meeting.getLocation());
             outputStreamWriter.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
         }
 
@@ -56,13 +57,13 @@ public class FileManager {
 
     public static List<Meeting> readFile(Context context) {
         List<Meeting> meetings = new ArrayList<>();
-        try{
+        try {
             InputStream inputStream = context.openFileInput("meetings.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             Meeting meeting = null;
             String getString = "";
-            while ( (getString = bufferedReader.readLine()) != null ) {
+            while ((getString = bufferedReader.readLine()) != null) {
                 String[] attributes = getString.split(";");
                 if (attributes.length > 6) {
                     meeting = new Meeting(attributes[0], attributes[3]);
@@ -71,10 +72,10 @@ public class FileManager {
                 }
             }
             inputStream.close();
-    } catch (IOException e) {
-        Log.e("login activity", "Can not read file: " + e.toString());
-    }
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
 
-    return meetings;
+        return meetings;
     }
 }

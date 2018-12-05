@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,22 +33,21 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater,  ViewGroup container,
-                              Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         ((MainActivity) getActivity()).setActionBarTitle("Home");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         myMeetings = view.findViewById(R.id.myMeetings);
         // Initialize meetings
-        List<Meeting> meetings= new ArrayList<>();
-        for (Meeting m : meetings)
-        {
+        List<Meeting> meetings = new ArrayList<>();
+        for (Meeting m : meetings) {
             //FileManager.saveMeetingToFile(m, getContext());
         }
         //try {
-            meetings = FileManager.readFile(getContext());
+        meetings = FileManager.readFile(getContext());
         //} catch (IOException e) {
-         //   e.printStackTrace();
+        //   e.printStackTrace();
         //}
         FileManager fm = new FileManager(getContext());
         meetings.add(new Meeting("name", "house"));
