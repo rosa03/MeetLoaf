@@ -12,6 +12,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class CreateFragment extends Fragment {
 
     protected EditText editTitle;
@@ -43,12 +48,7 @@ public class CreateFragment extends Fragment {
         editDate = view.findViewById(R.id.date);
         editTime = view.findViewById(R.id.time);
         final Button submit = view.findViewById(R.id.submit);
-
         final Button clear = view.findViewById(R.id.clear);
-//        theDate = view.findViewById(R.id.dateTextView);
-//        Intent incoming = getActivity().getIntent();
-//        String date = incoming.getStringExtra("date");
-//        theDate.setText(date);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,17 +62,6 @@ public class CreateFragment extends Fragment {
                 clearForm(view);
             }
         });
-//        selectDate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //selectDate(view);
-//                DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-//                    @Override
-//                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-//
-//                    }
-//                });
-        //datePickerDialog.show();
         return view;
     }
 
@@ -87,20 +76,48 @@ public class CreateFragment extends Fragment {
 
     public void createMeeting(View v) {
         // all of the data from the form
+        Boolean valid = true;
+
         String title = this.editTitle.getText().toString();
         String notes = this.editNotes.getText().toString();
         String attendees = this.editAttendees.getText().toString();
         String location = this.editLocation.getText().toString();
-        String date = this.editDate.getText().toString();
         String time = this.editTime.getText().toString();
-        Meeting meeting = new Meeting(title, date, time);
-        meeting.setAttendees(attendees);
-        meeting.setNotes(notes);
-        meeting.setLocation(location);
-        FileManager.saveMeetingToFile(meeting, getContext());
-        Toast.makeText(getActivity(), "Saved to " + getActivity().getFilesDir() +
-                "/" + "meetings.txt", Toast.LENGTH_LONG).show();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
+        Date convertedDate = new Date();
+        String date = this.editDate.getText().toString();
+        try {
+            convertedDate = dateFormat.parse(date);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            valid = false;
+        }
+
+        if (title == "")
+        {
+            valid = false;
+        }
+
+        if (valid)
+        {
+            Meeting meeting = new Meeting(title, date, time);
+            meeting.setAttendees(attendees);
+            meeting.setNotes(notes);
+            meeting.setLocation(location);
+            FileManager.saveMeetingToFile(meeting, getContext());
+            Toast.makeText(getActivity(), "Saved to " + getActivity().getFilesDir() +
+                    "/" + "meetings.txt", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Toast.makeText(getActivity(), "Error in data", Toast.LENGTH_LONG).show();
+        }
+
+        valid = true;
 
     }
+
+
 
 }

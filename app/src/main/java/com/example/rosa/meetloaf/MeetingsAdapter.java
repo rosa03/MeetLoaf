@@ -1,6 +1,8 @@
 package com.example.rosa.meetloaf;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,16 +53,16 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
             // to access the context from any ViewHolder instance.
             super(itemView);
             this.meetings = meetings;
-            meetingName = (TextView) itemView.findViewById(R.id.meetingName);
+            meetingName = itemView.findViewById(R.id.meetingName);
             meetingDate = itemView.findViewById(R.id.meetingDate);
             meetingTime = itemView.findViewById(R.id.meetingTime);
         }
     }
 
     @Override
-    public void onBindViewHolder(MeetingsAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(final MeetingsAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
-        Meeting meeting = meetings.get(position);
+        final Meeting meeting = meetings.get(position);
 
         // Set item views based on your views and data model
         TextView t1 = viewHolder.meetingName;
@@ -70,6 +72,24 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
         t1.setText(meeting.getTitle());
         t2.setText(meeting.getDate());
         t3.setText(meeting.getTime());
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+                alertDialog.setTitle(meeting.getTitle());
+                alertDialog.setMessage("Date: " + meeting.getDate() + "\n" + "Time: " + meeting.getTime() +
+                        "\n" + "Attendees: " + meeting.getAttendees() + "\n" + "Location: " + meeting.getLocation()
+                        + "\n" + "Notes: " + meeting.getNotes());
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+        });
     }
 
     @Override

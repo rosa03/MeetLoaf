@@ -1,5 +1,7 @@
 package com.example.rosa.meetloaf;
 
+import java.util.Date;
+
 public class Meeting {
 
 //    private final int ID;
@@ -9,10 +11,10 @@ public class Meeting {
     private String title, notes, location, date, time;
 
     //put attendees back into array
-    public Meeting(String title, String date, String time){
+    public Meeting(String title, String convertedDate, String time){
 //        this.ID = COUNT.incrementAndGet();
         this.title = title;
-        this.date = date;
+        this.date = convertedDate;
         this.time = time;
     }
 
