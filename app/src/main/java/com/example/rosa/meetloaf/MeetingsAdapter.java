@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHolder> {
@@ -38,7 +40,8 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView meetingName;
-        public Button meetingButton;
+        public TextView meetingDate;
+        public TextView meetingTime;
         public List<Meeting> meetings;
 
         // We also create a constructor that accepts the entire item row
@@ -49,7 +52,8 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
             super(itemView);
             this.meetings = meetings;
             meetingName = (TextView) itemView.findViewById(R.id.meetingName);
-            meetingButton = (Button) itemView.findViewById(R.id.meetingButton);
+            meetingDate = itemView.findViewById(R.id.meetingDate);
+            meetingTime = itemView.findViewById(R.id.meetingTime);
         }
     }
 
@@ -59,9 +63,13 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
         Meeting meeting = meetings.get(position);
 
         // Set item views based on your views and data model
-        TextView textView = viewHolder.meetingName;
-        textView.setText(meeting.getTitle());
-        Button button = viewHolder.meetingButton;
+        TextView t1 = viewHolder.meetingName;
+        TextView t2 = viewHolder.meetingDate;
+        TextView t3 = viewHolder.meetingTime;
+
+        t1.setText(meeting.getTitle());
+        t2.setText(meeting.getDate());
+        t3.setText(meeting.getTime());
     }
 
     @Override

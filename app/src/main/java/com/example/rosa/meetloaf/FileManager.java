@@ -36,8 +36,7 @@ public class FileManager {
 
     /**
      * This method saves a meeting in the meetings.txt file.
-     *
-     * @param meeting
+     *     * @param meeting
      */
     public static void saveMeetingToFile(Meeting meeting, Context context) {
 
@@ -46,7 +45,7 @@ public class FileManager {
         try {
             FileOutputStream fos = context.openFileOutput(FILE_NAME, Context.MODE_APPEND);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos);
-            outputStreamWriter.write(meeting.getTitle() + ";" +
+            outputStreamWriter.write("\n" + meeting.getTitle() + ";" + meeting.getDate() + ";" + meeting.getTime() + ";" +
                     meeting.getAttendees() + ";" + meeting.getNotes() + ";" + meeting.getLocation());
             outputStreamWriter.close();
         } catch (IOException e) {
@@ -58,16 +57,18 @@ public class FileManager {
     public static List<Meeting> readFile(Context context) {
         List<Meeting> meetings = new ArrayList<>();
         try {
-            InputStream inputStream = context.openFileInput("meetings.txt");
+            InputStream inputStream = context.openFileInput(FILE_NAME);
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             Meeting meeting = null;
             String getString = "";
             while ((getString = bufferedReader.readLine()) != null) {
                 String[] attributes = getString.split(";");
-                if (attributes.length > 6) {
-                    meeting = new Meeting(attributes[0], attributes[3]);
-                    meeting.setAttendees(attributes[1]);
+                if (attributes.length >= 6) {
+                    meeting = new Meeting(attributes[0], attributes[1], attributes[2]);
+                    meeting.setAttendees(attributes[3]);
+                    meeting.setLocation(attributes[4]);
+                    meeting.setNotes(attributes[5]);
                     meetings.add(meeting);
                 }
             }

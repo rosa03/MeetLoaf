@@ -1,14 +1,11 @@
 package com.example.rosa.meetloaf;
 
-import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +18,9 @@ public class CreateFragment extends Fragment {
     protected EditText editAttendees;
     protected EditText editNotes;
     protected EditText editLocation;
+    protected EditText editTime;
+    protected EditText editDate;
+
     private TextView theDate;
 
     private GoogleMap map;
@@ -40,21 +40,15 @@ public class CreateFragment extends Fragment {
         editAttendees = view.findViewById(R.id.attendees);
         editNotes = view.findViewById(R.id.notes);
         editLocation = view.findViewById(R.id.location);
+        editDate = view.findViewById(R.id.date);
+        editTime = view.findViewById(R.id.time);
         final Button submit = view.findViewById(R.id.submit);
+
         final Button clear = view.findViewById(R.id.clear);
-        final Button selectDate = view.findViewById(R.id.selectDate);
-        theDate = view.findViewById(R.id.dateTextView);
+//        theDate = view.findViewById(R.id.dateTextView);
 //        Intent incoming = getActivity().getIntent();
 //        String date = incoming.getStringExtra("date");
 //        theDate.setText(date);
-        selectDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), CalendarActivity.class);
-//                startActivity(intent);
-                launchCalendar(view);
-            }
-        });
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +81,8 @@ public class CreateFragment extends Fragment {
         editAttendees.setText(" ");
         editNotes.setText(" ");
         editLocation.setText(" ");
+        editTime.setText(" ");
+        editDate.setText(" ");
     }
 
     public void createMeeting(View v) {
@@ -95,19 +91,16 @@ public class CreateFragment extends Fragment {
         String notes = this.editNotes.getText().toString();
         String attendees = this.editAttendees.getText().toString();
         String location = this.editLocation.getText().toString();
-        Meeting meeting = new Meeting(title, location);
+        String date = this.editDate.getText().toString();
+        String time = this.editTime.getText().toString();
+        Meeting meeting = new Meeting(title, date, time);
         meeting.setAttendees(attendees);
         meeting.setNotes(notes);
+        meeting.setLocation(location);
         FileManager.saveMeetingToFile(meeting, getContext());
         Toast.makeText(getActivity(), "Saved to " + getActivity().getFilesDir() +
                 "/" + "meetings.txt", Toast.LENGTH_LONG).show();
 
     }
-
-    public void launchCalendar(View view) {
-//        Intent i = new Intent(getContext(), CreateFragment.class);
-        startActivity(new Intent(getContext(), CalendarActivity.class));
-    }
-
 
 }
