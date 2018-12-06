@@ -111,6 +111,7 @@ public class CreateFragment extends Fragment {
             public void onClick(View view) {
                 attendees.add(editAttendees.getText().toString());
                 editAttendees.setText(" ");
+                Toast.makeText(getActivity(), "Added to meeting", Toast.LENGTH_LONG).show();
             }
         });
 
