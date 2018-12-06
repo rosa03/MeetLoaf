@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
     private List<Meeting> meetings;
     private Context context;
     private MeetingsAdapter ma;
+    static int textColour = Color.BLACK;
+    static int textSize = 15;
 
     /**
      * Constructs a MeetingsAdapter object.
@@ -82,6 +85,13 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
         t1.setText(meeting.getTitle());
         t2.setText(meeting.getDate());
         t3.setText(meeting.getTime());
+        t1.setTextColor(textColour);
+        t2.setTextColor(textColour);
+        t3.setTextColor(textColour);
+        t1.setTextSize(textSize);
+        t2.setTextSize(textSize);
+        t3.setTextSize(textSize);
+
 
         // Creates an alert dialog when an item view is clicked
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -54,6 +54,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -110,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="@color/colorGrey"
                 android:text="@string/clear"
                 android:textColor="@color/colorWhite" />
 
@@ -119,8 +120,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:backgroundTint="@color/colorPrimary"
-                android:height="40dp"
+                android:backgroundTint="@color/colorGrey"
+                android:height="60dp"
                 android:text="@string/submit"
                 android:textColor="@color/colorWhite" />
 

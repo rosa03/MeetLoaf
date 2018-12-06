@@ -1,8 +1,10 @@
 package com.example.rosa.meetloaf;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,11 +35,8 @@ public class CreateFragment extends Fragment {
     protected Button location;
     protected ImageButton add;
     private ArrayList<String> attendees;
-
-
-    private TextView theDate;
-
-    private GoogleMap map;
+    static int textColour = Color.BLACK;
+    static int textSize = 15;
 
     /**
      * Constructor for fragment.
@@ -66,10 +65,26 @@ public class CreateFragment extends Fragment {
         editDate = view.findViewById(R.id.date);
         editTime = view.findViewById(R.id.time);
         attendees = new ArrayList<>();
+        editTitle.setTextColor(textColour);
+        editAttendees.setTextColor(textColour);
+        editNotes.setTextColor(textColour);
+        editTime.setTextColor(textColour);
+        editDate.setTextColor(textColour);
+        editTitle.setTextSize(textSize);
+        editAttendees.setTextSize(textSize);
+        editNotes.setTextSize(textSize);
+        editTime.setTextSize(textSize);
+        editDate.setTextSize(textSize);
         final Button submit = view.findViewById(R.id.submit);
         final Button clear = view.findViewById(R.id.clear);
         final Button location = view.findViewById(R.id.location);
         final ImageButton add = view.findViewById(R.id.add);
+        submit.setTextColor(textColour);
+        clear.setTextColor(textColour);
+        location.setTextColor(textColour);
+        submit.setTextSize(textSize);
+        clear.setTextSize(textSize);
+        location.setTextSize(textSize);
         //starts map activity when location button is clicked
         location.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +148,7 @@ public class CreateFragment extends Fragment {
         for (String attendee : attendees) {
             attendeesString += attendee + ", ";
         }
-        attendeesString = attendeesString.substring(0, attendeesString.length()-2);
+        attendeesString = attendeesString.substring(0, attendeesString.length() - 2);
         String time = this.editTime.getText().toString();
         Double latitude = MapsActivity.latitude;
         Double longitude = MapsActivity.longitude;

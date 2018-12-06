@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsFragment">
+    tools:context=".SettingsFragment"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/changeColour"
@@ -13,4 +14,14 @@
         android:backgroundTint="@color/colorGrey"
         android:text="@string/text_colour" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/changeSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/colorGrey"
+        android:text="@string/text_size" />
+
+
+
+</LinearLayout>
