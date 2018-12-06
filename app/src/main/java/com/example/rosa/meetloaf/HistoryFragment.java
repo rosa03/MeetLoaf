@@ -1,6 +1,7 @@
 package com.example.rosa.meetloaf;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,6 +29,9 @@ public class HistoryFragment extends Fragment {
     private RecyclerView myMeetings;
     private RecyclerView.Adapter rvAdapter;
     private List<Meeting> meetings;
+    private TextView tv;
+    static int textColour = Color.BLACK;
+    static int textSize = 30;
 
     /**
      * Constructs the fragment.
@@ -48,6 +53,9 @@ public class HistoryFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_history, container, false);
         myMeetings = view.findViewById(R.id.pastMeetings);
+        tv = view.findViewById(R.id.tv);
+        tv.setTextSize(textSize);
+        tv.setTextColor(textColour);
         // Initialize meetings
         meetings = new ArrayList<>();
         FileManager fm = new FileManager(getContext());
@@ -62,6 +70,7 @@ public class HistoryFragment extends Fragment {
     /**
      * This method checks if the date input is before the current date and adds it to an array list
      * of meeting objects if it is.
+     *
      * @return m
      */
     public List<Meeting> pastMeetings() {

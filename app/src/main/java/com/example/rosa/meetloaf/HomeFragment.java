@@ -1,6 +1,7 @@
 package com.example.rosa.meetloaf;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,6 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,6 +31,9 @@ public class HomeFragment extends Fragment {
     private RecyclerView myMeetings;
     private RecyclerView.Adapter rvAdapter;
     private List<Meeting> meetings;
+    private TextView textView;
+    static int textColour = Color.BLACK;
+    static int textSize = 30;
 
     /**
      * Constructs the fragment.
@@ -39,7 +46,7 @@ public class HomeFragment extends Fragment {
      * @param inflater
      * @param container
      * @param savedInstanceState
-     * @return
+     * @return view
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +55,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         myMeetings = view.findViewById(R.id.myMeetings);
+        textView = view.findViewById(R.id.textView);
+        textView.setTextColor(textColour);
+        textView.setTextSize(textSize);
         // Initialize meetings
         FileManager fm = new FileManager(getContext());
         meetings = new ArrayList<>();

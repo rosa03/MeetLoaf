@@ -65,6 +65,8 @@ public class SettingsFragment extends Fragment {
                 changeSize.setTextColor(Color.parseColor(colourArray[i]));
                 MeetingsAdapter.textColour = Color.parseColor(colourArray[i]);
                 CreateFragment.textColour = Color.parseColor(colourArray[i]);
+                HomeFragment.textColour = Color.parseColor(colourArray[i]);
+                HistoryFragment.textColour = Color.parseColor(colourArray[i]);
                 SettingsFragment.textColourS = Color.parseColor(colourArray[i]);
 
             }
@@ -82,6 +84,8 @@ public class SettingsFragment extends Fragment {
                 changeColour.setTextSize(sizeArray[j]);
                 MeetingsAdapter.textSize = sizeArray[j];
                 CreateFragment.textSize = sizeArray[j];
+                HomeFragment.textSize = sizeArray[j];
+                HistoryFragment.textSize = sizeArray[j];
                 SettingsFragment.textSizeS = sizeArray[j];
             }
         });
