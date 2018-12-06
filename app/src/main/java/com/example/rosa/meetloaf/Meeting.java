@@ -8,7 +8,8 @@ public class Meeting {
 //    private static final AtomicInteger COUNT = new AtomicInteger(0);
     //private String[] attendees;
     private String attendees;
-    private String title, notes, location, date, time;
+    private String title, notes, date, time;
+    double latitude, longitude;
 
     //put attendees back into array
     public Meeting(String title, String convertedDate, String time){
@@ -34,8 +35,12 @@ public class Meeting {
         this.notes = notes;
     }
 
-    public void setLocation(String location){
-        this.location = location;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public String getTitle(){
@@ -58,8 +63,9 @@ public class Meeting {
         return notes;
     }
 
-    public String getLocation(){
-        return location;
-    }
+    public double getLatitude(){return latitude;}
 
+    public double getLongitude() {
+        return longitude;
+    }
 }

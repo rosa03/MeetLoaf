@@ -17,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 
 public class CreateFragment extends Fragment {
 
@@ -25,6 +26,7 @@ public class CreateFragment extends Fragment {
     protected EditText editNotes;
     protected EditText editTime;
     protected EditText editDate;
+    protected Button location;
 
     private TextView theDate;
 
@@ -88,6 +90,8 @@ public class CreateFragment extends Fragment {
         String notes = this.editNotes.getText().toString();
         String attendees = this.editAttendees.getText().toString();
         String time = this.editTime.getText().toString();
+        Double latitude = MapsActivity.latitude;
+        Double longitude = MapsActivity.longitude;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
         Date convertedDate = new Date();
         String date = this.editDate.getText().toString();
@@ -96,32 +100,30 @@ public class CreateFragment extends Fragment {
         } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            Toast.makeText(getActivity(), "Please enter date in the format dd/mm/yyyy", Toast.LENGTH_LONG).show();
             valid = false;
         }
 
-        if (title == "")
-        {
+        if (title == "" || date == "" || time == "" || attendees == "" || notes == "") {
             valid = false;
         }
 
-        if (valid)
-        {
+        if (valid) {
             Meeting meeting = new Meeting(title, date, time);
+            meeting.setLatitude(latitude);
+            meeting.setLongitude(longitude);
             meeting.setAttendees(attendees);
             meeting.setNotes(notes);
             FileManager.saveMeetingToFile(meeting, getContext());
             Toast.makeText(getActivity(), "Saved to " + getActivity().getFilesDir() +
                     "/" + "meetings.txt", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            Toast.makeText(getActivity(), "Error in data", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getActivity(), "Enter all fields", Toast.LENGTH_LONG).show();
         }
 
         valid = true;
 
     }
-
 
 
 }

@@ -15,6 +15,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    public static double latitude = 51.619543;
+    public static double longitude = -3.878634;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.getUiSettings().setZoomGesturesEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
 
-        LatLng coFo = new LatLng(51.619543, -3.878634);
+        LatLng coFo = new LatLng(latitude, longitude);
         mMap.addMarker(new MarkerOptions().position(coFo).title("Computational Foundry"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(coFo));
 
@@ -58,9 +60,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .position(point)
                         .title("New Marker Point");
                 mMap.addMarker(marker);
+                latitude = (point.latitude);
+                longitude = (point.longitude);
                 Toast.makeText(MapsActivity.this, point.latitude + " " + point.longitude, Toast.LENGTH_LONG).show();
             }
 
         });
     }
+
 }

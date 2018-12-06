@@ -3,6 +3,7 @@ package com.example.rosa.meetloaf;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
 
     private List<Meeting> meetings;
     private Context context;
+    private MeetingsAdapter ma;
 
     // Pass in the contact array into the constructor
     public MeetingsAdapter(List<Meeting> meetings, Context context) {
@@ -79,8 +81,7 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
                 AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                 alertDialog.setTitle(meeting.getTitle());
                 alertDialog.setMessage("Date: " + meeting.getDate() + "\n" + "Time: " + meeting.getTime() +
-                        "\n" + "Attendees: " + meeting.getAttendees() + "\n" + "Location: " + meeting.getLocation()
-                        + "\n" + "Notes: " + meeting.getNotes());
+                        "\n" + "Attendees: " + meeting.getAttendees() + "\n" + "Notes: " + meeting.getNotes());
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -90,7 +91,9 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
                 alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "View Location",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
+                                MapsActivity.latitude = meeting.getLatitude();
+                                MapsActivity.longitude = meeting.getLongitude();
+                                launchIntent();
                             }
                         });
                 alertDialog.show();
@@ -101,6 +104,13 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
     @Override
     public int getItemCount() {
         return meetings.size();
+    }
+
+    public void launchIntent(){
+        ma = this;
+        Intent i = new Intent(ma.context, MapsActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(i);
     }
 
 }

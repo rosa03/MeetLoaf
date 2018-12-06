@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
         Date currentDate = Calendar.getInstance().getTime();
         Date focus = null;
         for(Meeting meeting: meetings){
-            SimpleDateFormat date1 = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            SimpleDateFormat date1 = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
             try {
                 focus = date1.parse(meeting.getDate());
             } catch (ParseException e) {

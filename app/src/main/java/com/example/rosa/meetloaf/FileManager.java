@@ -36,7 +36,7 @@ public class FileManager {
 
     /**
      * This method saves a meeting in the meetings.txt file.
-     *     * @param meeting
+     * * @param meeting
      */
     public static void saveMeetingToFile(Meeting meeting, Context context) {
 
@@ -46,7 +46,7 @@ public class FileManager {
             FileOutputStream fos = context.openFileOutput(FILE_NAME, Context.MODE_APPEND);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos);
             outputStreamWriter.write("\n" + meeting.getTitle() + ";" + meeting.getDate() + ";" + meeting.getTime() + ";" +
-                    meeting.getAttendees() + ";" + meeting.getNotes() + ";" + meeting.getLocation());
+                    meeting.getAttendees() + ";" + meeting.getLatitude() + ";" + meeting.getLongitude() + ";" + meeting.getNotes());
             outputStreamWriter.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
@@ -64,11 +64,12 @@ public class FileManager {
             String getString = "";
             while ((getString = bufferedReader.readLine()) != null) {
                 String[] attributes = getString.split(";");
-                if (attributes.length >= 6) {
+                if (attributes.length >= 7) {
                     meeting = new Meeting(attributes[0], attributes[1], attributes[2]);
                     meeting.setAttendees(attributes[3]);
-                    meeting.setLocation(attributes[4]);
-                    meeting.setNotes(attributes[5]);
+                    meeting.setLatitude(Double.parseDouble(attributes[4]));
+                    meeting.setLongitude(Double.parseDouble(attributes[5]));
+                    meeting.setNotes(attributes[6]);
                     meetings.add(meeting);
                 }
             }
@@ -79,4 +80,5 @@ public class FileManager {
 
         return meetings;
     }
+
 }
