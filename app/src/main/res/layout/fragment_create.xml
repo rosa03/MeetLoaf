@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/time"
-                android:inputType="time" />
+                android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -97,21 +97,22 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:backgroundTint="@color/colorPrimary"
-                android:text="@string/submit"
-                android:textColor="@color/colorWhite" />
-
-            <Button
                 android:id="@+id/clear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/clear"
+                android:textColor="@color/colorWhite" />
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/colorPrimary"
+                android:height="40dp"
+                android:text="@string/submit"
                 android:textColor="@color/colorWhite" />
 
         </android.support.design.widget.TextInputLayout>
