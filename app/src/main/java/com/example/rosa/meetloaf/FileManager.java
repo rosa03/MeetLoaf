@@ -90,4 +90,19 @@ public class FileManager {
         return meetings;
     }
 
+    public static List<String> findAttendees(Context c ){
+        List<Meeting> m = readFile(c);
+        List<String> names = new ArrayList<>();
+
+        for (Meeting meet : m){
+            String[] n = meet.getAttendees().split(",");
+
+            for (String s : n){
+                names.add(s);
+            }
+        }
+
+        return names;
+    }
+
 }

@@ -6,8 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +18,7 @@ import com.google.android.gms.maps.GoogleMap;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
@@ -22,11 +26,14 @@ import java.util.Map;
 public class CreateFragment extends Fragment {
 
     protected EditText editTitle;
-    protected EditText editAttendees;
+    protected AutoCompleteTextView editAttendees;
     protected EditText editNotes;
     protected EditText editTime;
     protected EditText editDate;
     protected Button location;
+    protected ImageButton add;
+    private ArrayList<String> attendees;
+
 
     private TextView theDate;
 
@@ -58,9 +65,11 @@ public class CreateFragment extends Fragment {
         editNotes = view.findViewById(R.id.notes);
         editDate = view.findViewById(R.id.date);
         editTime = view.findViewById(R.id.time);
+        attendees = new ArrayList<>();
         final Button submit = view.findViewById(R.id.submit);
         final Button clear = view.findViewById(R.id.clear);
         final Button location = view.findViewById(R.id.location);
+        final ImageButton add = view.findViewById(R.id.add);
         //starts map activity when location button is clicked
         location.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +91,18 @@ public class CreateFragment extends Fragment {
                 clearForm(view);
             }
         });
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attendees.add(editAttendees.getText().toString());
+                editAttendees.setText(" ");
+            }
+        });
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                R.layout.attendee_view, R.id.attendeeView, FileManager.findAttendees(getContext()));
+        editAttendees.setAdapter(adapter);
+
         return view;
     }
 
@@ -108,7 +129,10 @@ public class CreateFragment extends Fragment {
         Boolean valid = true;
         String title = this.editTitle.getText().toString();
         String notes = this.editNotes.getText().toString();
-        String attendees = this.editAttendees.getText().toString();
+        String attendeesString ="";
+        for (String attendee: attendees){
+            attendeesString += attendee + ", ";
+        }
         String time = this.editTime.getText().toString();
         Double latitude = MapsActivity.latitude;
         Double longitude = MapsActivity.longitude;
@@ -125,7 +149,7 @@ public class CreateFragment extends Fragment {
         }
 
         // If fields are empty, sets boolean to false
-        if (title == "" || date == "" || time == "" || attendees == "") {
+        if (title == "" || date == "" || time == "" || attendeesString == "") {
             valid = false;
         }
 
@@ -134,7 +158,7 @@ public class CreateFragment extends Fragment {
             Meeting meeting = new Meeting(title, date, time);
             meeting.setLatitude(latitude);
             meeting.setLongitude(longitude);
-            meeting.setAttendees(attendees);
+            meeting.setAttendees(attendeesString);
             meeting.setNotes(notes);
             FileManager.saveMeetingToFile(meeting, getContext());
             Toast.makeText(getActivity(), "Saved to " + getActivity().getFilesDir() +
