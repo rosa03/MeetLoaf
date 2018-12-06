@@ -129,10 +129,11 @@ public class CreateFragment extends Fragment {
         Boolean valid = true;
         String title = this.editTitle.getText().toString();
         String notes = this.editNotes.getText().toString();
-        String attendeesString ="";
-        for (String attendee: attendees){
+        String attendeesString = "";
+        for (String attendee : attendees) {
             attendeesString += attendee + ", ";
         }
+        attendeesString = attendeesString.substring(0, attendeesString.length()-2);
         String time = this.editTime.getText().toString();
         Double latitude = MapsActivity.latitude;
         Double longitude = MapsActivity.longitude;

@@ -73,12 +73,14 @@ public class FileManager {
                 // Separates each piece of data with a semi-colon
                 String[] attributes = getString.split(";");
                 // Each piece of data is assigned to an index in a set array
-                if (attributes.length >= 7) {
+                if (attributes.length >= 6) {
                     meeting = new Meeting(attributes[0], attributes[1], attributes[2]);
                     meeting.setAttendees(attributes[3]);
                     meeting.setLatitude(Double.parseDouble(attributes[4]));
                     meeting.setLongitude(Double.parseDouble(attributes[5]));
-                    meeting.setNotes(attributes[6]);
+                    if (attributes.length > 6){
+                        meeting.setNotes(attributes[6]);
+                    }
                     meetings.add(meeting);
                 }
             }
