@@ -51,6 +51,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng coFo = new LatLng(latitude, longitude);
         mMap.addMarker(new MarkerOptions().position(coFo).title("Computational Foundry"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(coFo));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coFo, 15));
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 

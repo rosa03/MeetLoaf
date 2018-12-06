@@ -8,11 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -22,12 +18,22 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
     private Context context;
     private MeetingsAdapter ma;
 
-    // Pass in the contact array into the constructor
+    /**
+     * Constructs a MeetingsAdapter object.
+     *
+     * @param meetings
+     * @param context
+     */
     public MeetingsAdapter(List<Meeting> meetings, Context context) {
         this.context = context;
         this.meetings = meetings;
     }
 
+    /**
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public MeetingsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -41,18 +47,14 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        // Your holder should contain a member variable
-        // for any view that will be set as you render a row
         public TextView meetingName;
         public TextView meetingDate;
         public TextView meetingTime;
         public List<Meeting> meetings;
 
-        // We also create a constructor that accepts the entire item row
-        // and does the view lookups to find each subview
+        // Constructor that accepts the entire item row and references the itemViews to their corresponding IDs
         public ViewHolder(View itemView, List<Meeting> meetings) {
-            // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
+            // Stores the itemView which can be used to access the context from any ViewHolder instance
             super(itemView);
             this.meetings = meetings;
             meetingName = itemView.findViewById(R.id.meetingName);
@@ -61,12 +63,18 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
         }
     }
 
+    /**
+     * This method recycles views when all positions are filled.
+     *
+     * @param viewHolder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(final MeetingsAdapter.ViewHolder viewHolder, int position) {
-        // Get the data model based on position
+        // Gets the data model based on position
         final Meeting meeting = meetings.get(position);
 
-        // Set item views based on your views and data model
+        // Sets item views to corresponding data
         TextView t1 = viewHolder.meetingName;
         TextView t2 = viewHolder.meetingDate;
         TextView t3 = viewHolder.meetingTime;
@@ -75,6 +83,7 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
         t2.setText(meeting.getDate());
         t3.setText(meeting.getTime());
 
+        // Creates an alert dialog when an item view is clicked
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,14 +91,18 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
                 alertDialog.setTitle(meeting.getTitle());
                 alertDialog.setMessage("Date: " + meeting.getDate() + "\n" + "Time: " + meeting.getTime() +
                         "\n" + "Attendees: " + meeting.getAttendees() + "\n" + "Notes: " + meeting.getNotes());
+                // Creates 'OK' button on dialog
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
+                            // Closes dialog once button is clicked
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
                             }
                         });
+                // Creates 'View Location' button on dialog
                 alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "View Location",
                         new DialogInterface.OnClickListener() {
+                            // Gets latitude and longitude of meeting location and opens map activity
                             public void onClick(DialogInterface dialog, int which) {
                                 MapsActivity.latitude = meeting.getLatitude();
                                 MapsActivity.longitude = meeting.getLongitude();
@@ -101,12 +114,20 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
         });
     }
 
+    /**
+     * This method returns number of meetings in array list.
+     *
+     * @return int
+     */
     @Override
     public int getItemCount() {
         return meetings.size();
     }
 
-    public void launchIntent(){
+    /**
+     * This method launches the map activity.
+     */
+    public void launchIntent() {
         ma = this;
         Intent i = new Intent(ma.context, MapsActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

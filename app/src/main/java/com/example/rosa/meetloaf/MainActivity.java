@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     private CreateFragment createFragment;
     private SettingsFragment settingsFragment;
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         setFragment(homeFragment);
 
+        // Sets corresponding fragments to navigation buttons
         mainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -67,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method replaces the current fragment to another fragment.
+     *
+     * @param fragment
+     */
     private void setFragment(Fragment fragment) {
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -75,6 +84,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method sets the action bar title.
+     *
+     * @param title
+     */
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }

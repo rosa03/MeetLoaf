@@ -13,20 +13,23 @@ import android.widget.RelativeLayout;
 
 import java.util.Random;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SettingsFragment extends Fragment {
-    private String colourArray[] =  {"#000000", "#34000d", "#800020", "#4B0082", "#293ED2", "#0B7465"};
+    private String colourArray[] = {"#000000", "#34000d", "#800020", "#4B0082", "#293ED2", "#0B7465"};
     private Button changeColour;
     private CreateFragment createFragment;
 
+    /**
+     * Constructs the fragment.
+     */
     public SettingsFragment() {
-        // Required empty public constructor
     }
 
-
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,14 +42,13 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Random i = new Random();
-                int c = i.nextInt(6-1) + 1;
+                int c = i.nextInt(6 - 1) + 1;
                 changeColour.setTextColor(Color.parseColor(colourArray[c]));
 
             }
         });
         return view;
     }
-
 
 
 }

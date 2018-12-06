@@ -28,11 +28,19 @@ public class HistoryFragment extends Fragment {
     private RecyclerView.Adapter rvAdapter;
     private List<Meeting> meetings;
 
+    /**
+     * Constructs the fragment.
+     */
     public HistoryFragment() {
         // Required empty public constructor
     }
 
-
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,8 +56,14 @@ public class HistoryFragment extends Fragment {
         myMeetings.setAdapter(rvAdapter);
         myMeetings.setLayoutManager(new LinearLayoutManager(view.getContext()));
         myMeetings.setItemAnimator(new DefaultItemAnimator());
-        return view;    }
+        return view;
+    }
 
+    /**
+     * This method checks if the date input is before the current date and adds it to an array list
+     * of meeting objects if it is.
+     * @return m
+     */
     public List<Meeting> pastMeetings() {
         List<Meeting> m = new ArrayList<>();
         Date currentDate = Calendar.getInstance().getTime();
@@ -61,7 +75,6 @@ public class HistoryFragment extends Fragment {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            //System.out.println(sDate1+"\t"+date1);
             if (currentDate.after(focus)) {
                 m.add(meeting);
             }

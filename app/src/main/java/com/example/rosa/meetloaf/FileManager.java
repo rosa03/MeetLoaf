@@ -54,8 +54,15 @@ public class FileManager {
 
     }
 
+    /**
+     * This method reads the file and returns a list of meeting objects.
+     *
+     * @param context
+     * @return meetings
+     */
     public static List<Meeting> readFile(Context context) {
         List<Meeting> meetings = new ArrayList<>();
+        // Reads in all input data
         try {
             InputStream inputStream = context.openFileInput(FILE_NAME);
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -63,7 +70,9 @@ public class FileManager {
             Meeting meeting = null;
             String getString = "";
             while ((getString = bufferedReader.readLine()) != null) {
+                // Separates each piece of data with a semi-colon
                 String[] attributes = getString.split(";");
+                // Each piece of data is assigned to an index in a set array
                 if (attributes.length >= 7) {
                     meeting = new Meeting(attributes[0], attributes[1], attributes[2]);
                     meeting.setAttendees(attributes[3]);

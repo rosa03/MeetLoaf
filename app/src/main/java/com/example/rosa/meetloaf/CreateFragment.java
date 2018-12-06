@@ -32,10 +32,19 @@ public class CreateFragment extends Fragment {
 
     private GoogleMap map;
 
+    /**
+     * Constructor for fragment.
+     */
     public CreateFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +52,7 @@ public class CreateFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_create, container, false);
         // Set title bar
         ((MainActivity) getActivity()).setActionBarTitle("Create Meeting");
+        //reference all components to their IDs
         editTitle = view.findViewById(R.id.title);
         editAttendees = view.findViewById(R.id.attendees);
         editNotes = view.findViewById(R.id.notes);
@@ -51,6 +61,7 @@ public class CreateFragment extends Fragment {
         final Button submit = view.findViewById(R.id.submit);
         final Button clear = view.findViewById(R.id.clear);
         final Button location = view.findViewById(R.id.location);
+        //starts map activity when location button is clicked
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,6 +85,11 @@ public class CreateFragment extends Fragment {
         return view;
     }
 
+    /**
+     * This method clears all fields of form.
+     *
+     * @param v
+     */
     public void clearForm(View v) {
         editTitle.setText(" ");
         editAttendees.setText(" ");
@@ -82,10 +98,14 @@ public class CreateFragment extends Fragment {
         editDate.setText(" ");
     }
 
+    /**
+     * This method gets inputs from fields and validates them.
+     *
+     * @param v
+     */
     public void createMeeting(View v) {
         // all of the data from the form
         Boolean valid = true;
-
         String title = this.editTitle.getText().toString();
         String notes = this.editNotes.getText().toString();
         String attendees = this.editAttendees.getText().toString();
@@ -104,10 +124,12 @@ public class CreateFragment extends Fragment {
             valid = false;
         }
 
-        if (title == "" || date == "" || time == "" || attendees == "" || notes == "") {
+        // If fields are empty, sets boolean to false
+        if (title == "" || date == "" || time == "" || attendees == "") {
             valid = false;
         }
 
+        // If boolean is true, creates meeting and adds to file, otherwise displays error message
         if (valid) {
             Meeting meeting = new Meeting(title, date, time);
             meeting.setLatitude(latitude);
@@ -118,7 +140,7 @@ public class CreateFragment extends Fragment {
             Toast.makeText(getActivity(), "Saved to " + getActivity().getFilesDir() +
                     "/" + "meetings.txt", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getActivity(), "Enter all fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Please enter all necessary fields", Toast.LENGTH_LONG).show();
         }
 
         valid = true;

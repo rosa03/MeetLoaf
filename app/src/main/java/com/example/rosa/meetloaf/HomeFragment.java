@@ -28,11 +28,19 @@ public class HomeFragment extends Fragment {
     private RecyclerView.Adapter rvAdapter;
     private List<Meeting> meetings;
 
-
+    /**
+     * Constructs the fragment.
+     */
     public HomeFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,19 +59,24 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    public List<Meeting> currentMeetings(){
+    /**
+     * This method checks if the date input is after the current date and adds it to an array list
+     * if it is.
+     *
+     * @return m
+     */
+    public List<Meeting> currentMeetings() {
         List<Meeting> m = new ArrayList<>();
         Date currentDate = Calendar.getInstance().getTime();
         Date focus = null;
-        for(Meeting meeting: meetings){
+        for (Meeting meeting : meetings) {
             SimpleDateFormat date1 = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
             try {
                 focus = date1.parse(meeting.getDate());
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            //System.out.println(sDate1+"\t"+date1);
-            if(currentDate.before(focus)){
+            if (currentDate.before(focus)) {
                 m.add(meeting);
             }
         }
