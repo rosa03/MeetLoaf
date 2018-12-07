@@ -60,7 +60,6 @@ public class HomeFragment extends Fragment {
         FileManager fm = new FileManager(getContext());
         meetings = new ArrayList<>();
         meetings.addAll(fm.readFile(getContext()));
-        List<Meeting> meeep = currentMeetings();
         rvAdapter = new MeetingsAdapter(currentMeetings(), this.getContext());
         myMeetings.setAdapter(rvAdapter);
         myMeetings.setLayoutManager(new LinearLayoutManager(view.getContext()));
