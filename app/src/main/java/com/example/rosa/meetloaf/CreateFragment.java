@@ -109,21 +109,22 @@ public class CreateFragment extends Fragment {
                 clearForm(view);
             }
         });
-
-        editAttendees.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                editAttendees.showDropDown();
-                return false;
-            }
-        });
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 attendees.add(editAttendees.getText().toString());
                 editAttendees.setText(" ");
                 Toast.makeText(getActivity(), "Attendee Added", Toast.LENGTH_LONG).show();
+            }
+        });
+        editAttendees.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (editAttendees != null) {
+                    editAttendees.showDropDown();
+                    return false;
+                }
+                return true;
             }
         });
 
@@ -210,6 +211,8 @@ public class CreateFragment extends Fragment {
         } else {
             Toast.makeText(getActivity(), "Please enter all necessary fields", Toast.LENGTH_LONG).show();
         }
+
+        valid = false;
     }
 
 
