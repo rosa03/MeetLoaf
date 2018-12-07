@@ -1,11 +1,13 @@
 package com.example.rosa.meetloaf;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Size;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -51,6 +53,7 @@ public class CreateFragment extends Fragment {
      * @param savedInstanceState
      * @return
      */
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -106,6 +109,15 @@ public class CreateFragment extends Fragment {
                 clearForm(view);
             }
         });
+
+        editAttendees.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                editAttendees.showDropDown();
+                return false;
+            }
+        });
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -198,8 +210,6 @@ public class CreateFragment extends Fragment {
         } else {
             Toast.makeText(getActivity(), "Please enter all necessary fields", Toast.LENGTH_LONG).show();
         }
-
-        valid = false;
     }
 
 
