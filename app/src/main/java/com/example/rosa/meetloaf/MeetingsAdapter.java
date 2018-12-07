@@ -13,6 +13,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+ * This class creates a recyclerView which displays the meetings.
+ *
+ * @author Rosa Salih
+ * @version 1.0
+ * @since 20-11-2018
+ */
 public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHolder> {
 
     private List<Meeting> meetings;

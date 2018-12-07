@@ -14,6 +14,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.Map;
 
+/**
+ * This class creates a Map Activity.
+ *
+ * @author Rosa Salih
+ * @version 1.0
+ * @since 20-11-2018
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;

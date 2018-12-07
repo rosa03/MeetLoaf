@@ -22,7 +22,11 @@ import java.util.Locale;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * This class creates a fragment that displays current meetings.
+ *
+ * @author Rosa Salih
+ * @version 1.0
+ * @since 20-11-2018
  */
 public class HomeFragment extends Fragment {
 
@@ -41,6 +45,8 @@ public class HomeFragment extends Fragment {
     }
 
     /**
+     * Constructs a view every time fragment is selected.
+     *
      * @param inflater
      * @param container
      * @param savedInstanceState

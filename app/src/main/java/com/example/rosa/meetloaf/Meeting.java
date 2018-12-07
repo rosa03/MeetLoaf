@@ -1,7 +1,12 @@
 package com.example.rosa.meetloaf;
 
-import java.util.Date;
-
+/**
+ * This class allows the creation of a meeting object.
+ *
+ * @author Rosa Salih
+ * @version 1.0
+ * @since 20-11-2018
+ */
 public class Meeting {
 
     private String attendees;

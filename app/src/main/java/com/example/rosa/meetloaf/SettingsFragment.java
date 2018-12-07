@@ -13,6 +13,13 @@ import android.widget.RelativeLayout;
 
 import java.util.Random;
 
+/**
+ * This class creates a settings fragment.
+ *
+ * @author Rosa Salih
+ * @version 1.0
+ * @since 20-11-2018
+ */
 public class SettingsFragment extends Fragment {
     private String colourArray[] = {"#000000", "#34000d", "#800020", "#4B0082", "#293ED2", "#0B7465"};
     private int sizeArray[] = {10, 15, 20, 30};

@@ -20,9 +20,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-
 /**
- * A simple {@link Fragment} subclass.
+ * This class creates a fragment displaying meeting history.
+ *
+ * @author Rosa Salih
+ * @version 1.0
+ * @since 20-11-2018
  */
 public class HistoryFragment extends Fragment {
 
@@ -41,6 +44,8 @@ public class HistoryFragment extends Fragment {
     }
 
     /**
+     * Constructs a view every time fragment is selected.
+     *
      * @param inflater
      * @param container
      * @param savedInstanceState

@@ -10,6 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+/**
+ * This class sets up the layout of the app.
+ *
+ * @author Rosa Salih
+ * @version 1.0
+ * @since 20-11-2018
+ */
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView mainNav;
@@ -30,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         mainFrame = findViewById(R.id.main_frame);
         mainNav = findViewById(R.id.main_nav);
 
+        // Set fragments
         homeFragment = new HomeFragment();
         createFragment = new CreateFragment();
         historyFragment = new HistoryFragment();
