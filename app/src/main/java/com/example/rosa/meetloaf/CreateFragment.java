@@ -111,7 +111,7 @@ public class CreateFragment extends Fragment {
             public void onClick(View view) {
                 attendees.add(editAttendees.getText().toString());
                 editAttendees.setText(" ");
-                Toast.makeText(getActivity(), "Added to meeting", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Attendee Added", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -147,9 +147,16 @@ public class CreateFragment extends Fragment {
         String notes = this.editNotes.getText().toString();
         String attendeesString = "";
         for (String attendee : attendees) {
-            attendeesString += attendee + ", ";
+            // Truncates string of attendees
+            if (attendeesString.length() >= 1) {
+                attendeesString += ", " + attendee;
+                attendeesString = attendeesString.substring(0, attendeesString.length() - 1);
+            } else {
+                attendeesString += attendee;
+
+            }
         }
-        attendeesString = attendeesString.substring(0, attendeesString.length() - 2);
+
         String time = this.editTime.getText().toString();
         Double latitude = MapsActivity.latitude;
         Double longitude = MapsActivity.longitude;
@@ -166,7 +173,16 @@ public class CreateFragment extends Fragment {
         }
 
         // If fields are empty, sets boolean to false
-        if (title == "" || date == "" || time == "" || attendeesString == "") {
+        if (title.equals("")) {
+            valid = false;
+        }
+        if (date.equals("")) {
+            valid = false;
+        }
+        if (time.equals("")) {
+            valid = false;
+        }
+        if (attendeesString.equals("")) {
             valid = false;
         }
 
@@ -178,14 +194,12 @@ public class CreateFragment extends Fragment {
             meeting.setAttendees(attendeesString);
             meeting.setNotes(notes);
             FileManager.saveMeetingToFile(meeting, getContext());
-            Toast.makeText(getActivity(), "Saved to " + getActivity().getFilesDir() +
-                    "/" + "meetings.txt", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Meeting Saved", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(getActivity(), "Please enter all necessary fields", Toast.LENGTH_LONG).show();
         }
 
-        valid = true;
-
+        valid = false;
     }
 
 

@@ -12,6 +12,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.Map;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -63,7 +65,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.addMarker(marker);
                 latitude = (point.latitude);
                 longitude = (point.longitude);
-                Toast.makeText(MapsActivity.this, point.latitude + " " + point.longitude, Toast.LENGTH_LONG).show();
+                Toast.makeText(MapsActivity.this, point.latitude + " " + point.longitude, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapsActivity.this, "Location Added", Toast.LENGTH_LONG).show();
             }
 
         });
