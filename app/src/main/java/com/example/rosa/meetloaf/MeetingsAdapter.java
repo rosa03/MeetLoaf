@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * This class creates a recyclerView which displays the meetings.
+ * This class provides a binding from the data to the views that are displayed within a RecyclerView.
  *
  * @author Rosa Salih
  * @version 1.0
